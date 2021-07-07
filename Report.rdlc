@@ -464,42 +464,38 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="Reqid">
+          <DataField>Reqid</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="reqdate">
+          <DataField>reqdate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="request">
+          <DataField>request</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="uid">
           <DataField>uid</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="username">
-          <DataField>username</DataField>
+        <Field Name="status">
+          <DataField>status</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="password">
-          <DataField>password</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="name">
-          <DataField>name</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="email">
-          <DataField>email</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="admin">
-          <DataField>admin</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="retypepassword">
-          <DataField>retypepassword</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+        <Field Name="RejApproveDate">
+          <DataField>RejApproveDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>BMSDataSet</rd:DataSetName>
         <rd:SchemaPath>D:\VS projects\BMS\BMSDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>RegUser</rd:TableName>
+        <rd:TableName>MaintanenceTable</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>RegUserTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>MaintanenceTableTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

@@ -18,8 +18,13 @@ namespace BMS.Controllers
         }
         public ActionResult Show()
         {
+            string x = System.Web.HttpContext.Current.Session["UserId"].ToString();
+            x = x.Replace("\"", "");
+            int idx = Convert.ToInt32(x);
             BMSdbEntities entities = new BMSdbEntities();
-            List<MaintanenceTable> maintainreq = entities.MaintanenceTables.ToList();
+            List<MaintanenceTable> maintainreq = (from c in entities.MaintanenceTables
+                                                  where c.uid == idx
+                                                  select c).ToList();
             if (maintainreq.Count == 0)
             {
                 maintainreq.Add(new MaintanenceTable());

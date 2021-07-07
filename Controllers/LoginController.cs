@@ -29,14 +29,16 @@ namespace BMS.Controllers
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
                 {
+                    string x= result.Content.ReadAsStringAsync().Result;
+                    x = x.Replace("\"", "");
                     if (lc.UserName.ToUpper() == "ADMIN")
                     {
-                        Session["UserId"] = "3";
+                        Session["UserId"] = x;
                         return RedirectToAction("ShowAdmin", "Home");
                     }
                     else
                     {
-                        Session["UserId"] = "3";
+                        Session["UserId"] = x;
                         return RedirectToAction("Show", "Home");
                     }
                 }

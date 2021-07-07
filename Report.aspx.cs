@@ -14,8 +14,8 @@ namespace BMS
 
             ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("Report.rdlc");
-            BMSdbEntities entities = new BMSdbEntities();
-            ReportDataSource datasource = new ReportDataSource("MaintanenceTable", (from MaintanenceTables in entities.MaintanenceTables.Take(10)
+            BMSDataSet entities = new BMSDataSet();
+            ReportDataSource datasource = new ReportDataSource("MaintanenceTable", (from MaintanenceTables in entities.MaintanenceTable.Take(10)
                                                                              select MaintanenceTables));
             ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
