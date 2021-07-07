@@ -1,0 +1,115 @@
+﻿@model BMS.MaintanenceTable
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <div class="form-horizontal">
+
+        <h4>Maintanence Request</h4>
+        <hr />
+        <table style="width:50%;">
+        <tr><td style="width:20%;">   Request</td>
+            <td style="width:80%;"> <textarea id="txtrequest" rows="2" cols="20"></textarea></td>
+            <td>&nbsp;</td>
+            </tr>
+        <tr><td>File Name:</td><td><input type="text" id="fileName" /></td><td>&nbsp;</td></tr>
+        <tr><td><input type="file" id="myfile" /></td><td>&nbsp;</td><td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td><input type="submit" id="btnrequest" value="Send Request" class="btn btn-default" /></td>
+                <td></td>
+            </tr>
+        </table>
+
+      
+    </div>
+
+
+
+
+
+
+   
+}
+
+<div>
+    @Html.ActionLink("Logout", "Index", "Login")
+</div>
+<script>
+    $(document).ready(function () {
+        $("body").on("click", "#btnrequest", function () {
+            var formData = new FormData();
+            formData.append("fileName", $("#fileName").val());
+            formData.append("file", $("#myfile")[0].files[0]);
+            $.ajax({
+                url: '/api/User/fileupload',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (fileName) {
+                    insertvalues(fileName);
+
+                    //$("#fileProgress").hide();
+                    //$("#lblMessage").html("<b>" + fileName + "</b> has been uploaded.");
+                },
+                //xhr: function () {
+                //    var fileXhr = $.ajaxSettings.xhr();
+                //    if (fileXhr.upload) {
+                //        $("progress").show();
+                //        fileXhr.upload.addEventListener("progress", function (e) {
+                //            if (e.lengthComputable) {
+                //                $("#fileProgress").attr({
+                //                    value: e.loaded,
+                //                    max: e.total
+                //                });
+                //            }
+                //        }, false);
+                //    }
+                //    return fileXhr;
+                //}
+            });
+            event.preventDefault();
+        });
+    });
+     function insertvalues(filename) {
+
+         var insert = {};
+         debugger;
+         console.log("first");
+         insert.reqdate= new Date();
+        insert.request = $("#txtrequest").val();
+         insert.status = "Pending";
+         console.log("second");
+        insert.uid =@Session["UserId"];
+         insert.RejApproveDate = null;
+         const lastDot = filename.lastIndexOf('.');
+
+         const fname = filename.substring(0, lastDot);
+         const ext = filename.substring(lastDot + 1);
+         var uri = '/api/User/insertrequest/MaintanenceTable/' + fname +'/'+ ext;
+        $.ajax({
+            url: uri,
+            type: 'POST',
+            contentType: 'Application/json; charset=utf-8',
+            data: JSON.stringify(insert),
+            dataType: 'json',
+            success: function (response) {
+
+                alert(response);
+
+
+            },
+
+        });
+
+    }
+</script>
+

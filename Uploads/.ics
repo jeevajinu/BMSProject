@@ -1,0 +1,80 @@
+BEGIN:VCALENDAR
+METHOD:REQUEST
+PRODID:Microsoft Exchange Server 2010
+VERSION:2.0
+BEGIN:VTIMEZONE
+TZID:Arabian Standard Time
+BEGIN:STANDARD
+DTSTART:16010101T000000
+TZOFFSETFROM:+0400
+TZOFFSETTO:+0400
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:16010101T000000
+TZOFFSETFROM:+0400
+TZOFFSETTO:+0400
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+ORGANIZER;CN=Mayur Joshi:mailto:mayur@omaemirates.com
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=jeeva.jose
+ ph16@gmail.com:mailto:jeeva.joseph16@gmail.com
+DESCRIPTION;LANGUAGE=en-US:________________________________________________
+ ________________________________\nMicrosoft Teams meeting\nJoin on your co
+ mputer or mobile app\nClick here to join the meeting<https://teams.microso
+ ft.com/l/meetup-join/19%3ameeting_NmRhZTI4N2QtOWNkZS00Y2QxLThlOTctMjljODY1
+ ZjA4OTc5%40thread.v2/0?context=%7b%22Tid%22%3a%22e44dbf70-90c6-4164-b3f5-d
+ d395c229c0a%22%2c%22Oid%22%3a%2225c0d9b0-3ffa-4538-ba43-78f384e3b3fd%22%7d
+ >\nLearn More<https://aka.ms/JoinTeamsMeeting> | Meeting options<https://t
+ eams.microsoft.com/meetingOptions/?organizerId=25c0d9b0-3ffa-4538-ba43-78f
+ 384e3b3fd&tenantId=e44dbf70-90c6-4164-b3f5-dd395c229c0a&threadId=19_meetin
+ g_NmRhZTI4N2QtOWNkZS00Y2QxLThlOTctMjljODY1ZjA4OTc5@thread.v2&messageId=0&l
+ anguage=en-US>\n__________________________________________________________
+ ______________________\n\n\n
+UID:040000008200E00074C5B7101A82E0080000000070B5BFC0FC6FD701000000000000000
+ 010000000DC3CEA8172802D4F85389A5EA8EF90C2
+SUMMARY;LANGUAGE=en-US:FW: INTERVIEW - MS. JEEVA - SHARJAH
+DTSTART;TZID=Arabian Standard Time:20210704T103000
+DTEND;TZID=Arabian Standard Time:20210704T110000
+CLASS:PUBLIC
+PRIORITY:5
+DTSTAMP:20210703T071754Z
+TRANSP:OPAQUE
+STATUS:CONFIRMED
+SEQUENCE:0
+LOCATION;LANGUAGE=en-US:Microsoft Teams Meeting
+X-MICROSOFT-CDO-APPT-SEQUENCE:0
+X-MICROSOFT-CDO-OWNERAPPTID:-928811035
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INSTTYPE:0
+X-MICROSOFT-SKYPETEAMSMEETINGURL:https://teams.microsoft.com/l/meetup-join/
+ 19%3ameeting_NmRhZTI4N2QtOWNkZS00Y2QxLThlOTctMjljODY1ZjA4OTc5%40thread.v2/
+ 0?context=%7b%22Tid%22%3a%22e44dbf70-90c6-4164-b3f5-dd395c229c0a%22%2c%22O
+ id%22%3a%2225c0d9b0-3ffa-4538-ba43-78f384e3b3fd%22%7d
+X-MICROSOFT-SCHEDULINGSERVICEUPDATEURL:https://api.scheduler.teams.microsof
+ t.com/teams/e44dbf70-90c6-4164-b3f5-dd395c229c0a/25c0d9b0-3ffa-4538-ba43-7
+ 8f384e3b3fd/19_meeting_NmRhZTI4N2QtOWNkZS00Y2QxLThlOTctMjljODY1ZjA4OTc5@th
+ read.v2/0
+X-MICROSOFT-SKYPETEAMSPROPERTIES:{"cid":"19:meeting_NmRhZTI4N2QtOWNkZS00Y2Q
+ xLThlOTctMjljODY1ZjA4OTc5@thread.v2"\,"private":true\,"type":0\,"mid":0\,"
+ rid":0\,"uid":null}
+X-MICROSOFT-ONLINEMEETINGCONFLINK:conf:sip:mayur@omaemirates.com\;gruu\;opa
+ que=app:conf:focus:id:teams:2:0!19:meeting_NmRhZTI4N2QtOWNkZS00Y2QxLThlOTc
+ tMjljODY1ZjA4OTc5-thread.v2!25c0d9b03ffa4538ba4378f384e3b3fd!e44dbf7090c64
+ 164b3f5dd395c229c0a
+X-MICROSOFT-DONOTFORWARDMEETING:FALSE
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+X-MICROSOFT-LOCATIONS:[{"DisplayName":"Microsoft Teams Meeting"\,"LocationA
+ nnotation":""\,"LocationUri":""\,"LocationStreet":""\,"LocationCity":""\,"
+ LocationState":""\,"LocationCountry":""\,"LocationPostalCode":""\,"Locatio
+ nFullAddress":""}]
+BEGIN:VALARM
+DESCRIPTION:REMINDER
+TRIGGER;RELATED=START:-PT15M
+ACTION:DISPLAY
+END:VALARM
+END:VEVENT
+END:VCALENDAR

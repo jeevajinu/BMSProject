@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="fileupload">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reqid" Type="int" Nullable="false" />
+          <Property Name="filepath" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MaintanenceTable">
+          <Key>
+            <PropertyRef Name="Reqid" />
+          </Key>
+          <Property Name="Reqid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reqdate" Type="date" Nullable="false" />
+          <Property Name="request" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="uid" Type="int" Nullable="false" />
+          <Property Name="status" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="RejApproveDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RegUser">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="admin" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="retypepassword" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Maintanancetable">
+          <End Role="RegUser" Type="Self.RegUser" Multiplicity="1" />
+          <End Role="MaintanenceTable" Type="Self.MaintanenceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegUser">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="MaintanenceTable">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MaintanenceTable">
+          <End Role="MaintanenceTable" Type="Self.MaintanenceTable" Multiplicity="1" />
+          <End Role="fileupload" Type="Self.fileupload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaintanenceTable">
+              <PropertyRef Name="Reqid" />
+            </Principal>
+            <Dependent Role="fileupload">
+              <PropertyRef Name="Reqid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BMSModelStoreContainer">
+          <EntitySet Name="fileupload" EntityType="Self.fileupload" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaintanenceTable" EntityType="Self.MaintanenceTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegUser" EntityType="Self.RegUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Maintanancetable" Association="Self.FK_Maintanancetable">
+            <End Role="RegUser" EntitySet="RegUser" />
+            <End Role="MaintanenceTable" EntitySet="MaintanenceTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MaintanenceTable" Association="Self.FK_MaintanenceTable">
+            <End Role="MaintanenceTable" EntitySet="MaintanenceTable" />
+            <End Role="fileupload" EntitySet="fileupload" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BMSdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="fileuploads" EntityType="BMSModel.fileupload" />
+          <EntitySet Name="MaintanenceTables" EntityType="BMSModel.MaintanenceTable" />
+          <EntitySet Name="RegUsers" EntityType="BMSModel.RegUser" />
+          <AssociationSet Name="FK_MaintanenceTable" Association="BMSModel.FK_MaintanenceTable">
+            <End Role="MaintanenceTable" EntitySet="MaintanenceTables" />
+            <End Role="fileupload" EntitySet="fileuploads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maintanancetable" Association="BMSModel.FK_Maintanancetable">
+            <End Role="RegUser" EntitySet="RegUsers" />
+            <End Role="MaintanenceTable" EntitySet="MaintanenceTables" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="fileupload">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reqid" Type="Int32" Nullable="false" />
+          <Property Name="filepath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MaintanenceTable" Relationship="BMSModel.FK_MaintanenceTable" FromRole="fileupload" ToRole="MaintanenceTable" />
+        </EntityType>
+        <EntityType Name="MaintanenceTable">
+          <Key>
+            <PropertyRef Name="Reqid" />
+          </Key>
+          <Property Name="Reqid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reqdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="uid" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="RejApproveDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="fileuploads" Relationship="BMSModel.FK_MaintanenceTable" FromRole="MaintanenceTable" ToRole="fileupload" />
+          <NavigationProperty Name="RegUser" Relationship="BMSModel.FK_Maintanancetable" FromRole="MaintanenceTable" ToRole="RegUser" />
+        </EntityType>
+        <EntityType Name="RegUser">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="admin" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="retypepassword" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MaintanenceTables" Relationship="BMSModel.FK_Maintanancetable" FromRole="RegUser" ToRole="MaintanenceTable" />
+        </EntityType>
+        <Association Name="FK_MaintanenceTable">
+          <End Type="BMSModel.MaintanenceTable" Role="MaintanenceTable" Multiplicity="1" />
+          <End Type="BMSModel.fileupload" Role="fileupload" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MaintanenceTable">
+              <PropertyRef Name="Reqid" />
+            </Principal>
+            <Dependent Role="fileupload">
+              <PropertyRef Name="Reqid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maintanancetable">
+          <End Type="BMSModel.RegUser" Role="RegUser" Multiplicity="1" />
+          <End Type="BMSModel.MaintanenceTable" Role="MaintanenceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegUser">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="MaintanenceTable">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BMSModelStoreContainer" CdmEntityContainer="BMSdbEntities">
+          <EntitySetMapping Name="fileuploads">
+            <EntityTypeMapping TypeName="BMSModel.fileupload">
+              <MappingFragment StoreEntitySet="fileupload">
+                <ScalarProperty Name="filepath" ColumnName="filepath" />
+                <ScalarProperty Name="Reqid" ColumnName="Reqid" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaintanenceTables">
+            <EntityTypeMapping TypeName="BMSModel.MaintanenceTable">
+              <MappingFragment StoreEntitySet="MaintanenceTable">
+                <ScalarProperty Name="RejApproveDate" ColumnName="RejApproveDate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="reqdate" ColumnName="reqdate" />
+                <ScalarProperty Name="Reqid" ColumnName="Reqid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegUsers">
+            <EntityTypeMapping TypeName="BMSModel.RegUser">
+              <MappingFragment StoreEntitySet="RegUser">
+                <ScalarProperty Name="retypepassword" ColumnName="retypepassword" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
