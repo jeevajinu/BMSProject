@@ -16,5 +16,12 @@ namespace BMS.Controllers
             return View(from MaintanenceTable in entities.MaintanenceTables.Take(10)
                         select MaintanenceTable);
         }
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["UserId"] != null)
+                base.OnActionExecuting(filterContext);
+            else
+                filterContext.Result = new RedirectResult("~/Login/Index");
+        }
     }
 }

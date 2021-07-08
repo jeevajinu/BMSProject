@@ -17,6 +17,7 @@ namespace BMS
         public int fid { get; set; }
         public int Reqid { get; set; }
         public string filepath { get; set; }
+        public string filename { get; set; }
     
         public virtual MaintanenceTable MaintanenceTable { get; set; }
     }

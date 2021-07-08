@@ -12,6 +12,7 @@
           <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Reqid" Type="int" Nullable="false" />
           <Property Name="filepath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="filename" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="MaintanenceTable">
           <Key>
@@ -98,6 +99,7 @@
           <Property Name="Reqid" Type="Int32" Nullable="false" />
           <Property Name="filepath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MaintanenceTable" Relationship="BMSModel.FK_MaintanenceTable" FromRole="fileupload" ToRole="MaintanenceTable" />
+          <Property Name="filename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MaintanenceTable">
           <Key>
@@ -158,6 +160,7 @@
           <EntitySetMapping Name="fileuploads">
             <EntityTypeMapping TypeName="BMSModel.fileupload">
               <MappingFragment StoreEntitySet="fileupload">
+                <ScalarProperty Name="filename" ColumnName="filename" />
                 <ScalarProperty Name="filepath" ColumnName="filepath" />
                 <ScalarProperty Name="Reqid" ColumnName="Reqid" />
                 <ScalarProperty Name="fid" ColumnName="fid" />

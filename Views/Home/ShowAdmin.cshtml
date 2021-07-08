@@ -108,15 +108,16 @@
             <span>@req.request</span>
             <input type="text" value="@req.request" style="display:none" />
         </td>
+        
         <td class="reqdate">
-            <span>@req.reqdate</span>
+            <span>@req.reqdate.ToString("dd/MM/yyyy")</span>
             @*<input type="text" value="@req.reqdate" style="display:none" />*@
         </td>
         <td class="status">
             <span>@req.status</span>
 
         </td>
-        
+
         <td class="status">
             <span>@req.RegUser.name</span>
 

@@ -11,14 +11,26 @@ namespace BMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            ReportViewer1.ProcessingMode = ProcessingMode.Local;
+            if (!IsPostBack)
+            { 
+                ReportViewer1.ProcessingMode = ProcessingMode.Local;
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("Report.rdlc");
-            BMSDataSet entities = new BMSDataSet();
-            ReportDataSource datasource = new ReportDataSource("MaintanenceTable", (from MaintanenceTables in entities.MaintanenceTable.Take(10)
-                                                                             select MaintanenceTables));
-            ReportViewer1.LocalReport.DataSources.Clear();
+                BMSdbEntities entities = new BMSdbEntities();
+                //ReportDataSource datasource = new ReportDataSource("MaintanenceTable", (from MaintanenceTables in entities.MaintanenceTable.Take(10)
+                //                                                                        select MaintanenceTables));
+                ReportDataSource datasource = new ReportDataSource("MaintananceDS", (from customer in entities.MaintanenceTables.Take(10)
+                                                                                 select customer));
+                ReportViewer1.LocalReport.DataSources.Clear();
             ReportViewer1.LocalReport.DataSources.Add(datasource);
+                ReportViewer1.AsyncRendering = false;
+                ReportViewer1.SizeToReportContent = true;
+                ReportViewer1.ZoomMode = ZoomMode.FullPage;
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Home/ShowAdmin");
         }
     }
 }

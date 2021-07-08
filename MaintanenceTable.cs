@@ -30,5 +30,6 @@ namespace BMS
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<fileupload> fileuploads { get; set; }
         public virtual RegUser RegUser { get; set; }
+        public virtual fileupload fileupload { get; set; }
     }
 }

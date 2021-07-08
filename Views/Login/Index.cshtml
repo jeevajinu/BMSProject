@@ -1,5 +1,7 @@
 ﻿@model BMS.Models.Login
-
+@{
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,48 +41,48 @@
 
     @using (Html.BeginForm())
     {
-    <div class="bs-example" style="border:2px solid gray;">
+        <div class="bs-example" style="border:2px solid gray;">
 
-        <div class="form-group centerlook">
-            <h1> Login </h1>
+            <div class="form-group centerlook">
+                <h1> Login </h1>
+            </div>
+            <div class="form-group centerlook">
+                <label>User Name: </label>
+                @Html.EditorFor(model => model.UserName)*
+                @Html.ValidationMessageFor(model => model.UserName)
+            </div>
+            <div class="form-group centerlook">
+                <label>Password:</label>
+                @Html.EditorFor(model => model.Password) *
+                @Html.ValidationMessageFor(model => model.Password)
+
+            </div>
+            @*<div class="form-group error">
+                    @if (@ViewBag.Failedcount != null)
+                    {
+
+                        <label> Failed Attempt count is: @ViewBag.Failedcount</label>
+                    }
+
+                    @if (@ViewBag.NotValidUser != null)
+                    {
+
+                        <label> @ViewBag.NotValidUser</label>
+                    }
+                </div>*@
+            <h1>@ViewBag.message</h1>
+            <div class="loginbtn">
+
+                <input type="submit" value="Login" class="btn btn-primary" />
+                <br />
+                New user?  <ul>
+                    <li style=" margin-left: 5%; margin-top: -21px; list-style-type: none;">@Html.ActionLink("Register Here", "Index", "Registration")</li>
+
+                </ul>
+
+            </div>
+
         </div>
-        <div class="form-group centerlook">
-            <label>User Name: </label>
-            @Html.EditorFor(model => model.UserName)*
-            @Html.ValidationMessageFor(model => model.UserName)
-        </div>
-        <div class="form-group centerlook">
-            <label>Password:</label>
-            @Html.EditorFor(model => model.Password) *
-            @Html.ValidationMessageFor(model => model.Password)
-
-        </div>
-        @*<div class="form-group error">
-            @if (@ViewBag.Failedcount != null)
-            {
-
-                <label> Failed Attempt count is: @ViewBag.Failedcount</label>
-            }
-
-            @if (@ViewBag.NotValidUser != null)
-            {
-
-                <label> @ViewBag.NotValidUser</label>
-            }
-        </div>*@
-        <h1>@ViewBag.message</h1>
-        <div class="loginbtn">
-
-            <input type="submit" value="Login" class="btn btn-primary" />
-            <br />
-            New user?  <ul>
-                <li style=" margin-left: 5%; margin-top: -21px; list-style-type: none;">@Html.ActionLink("Register Here", "Index", "Registration")</li>
-
-            </ul>
-
-        </div>
-       
-    </div>
     }
 </body>
 

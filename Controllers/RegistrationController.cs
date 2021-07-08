@@ -27,9 +27,16 @@ namespace BMS.Controllers
                 var savereg = insertreg.Result;
                 if (savereg.IsSuccessStatusCode)
                 {
-                    ViewBag.message = "The user " + uc.username + " created successfully";
+                    ViewBag.message = savereg.Content.ReadAsStringAsync().Result;
+                    ModelState.Clear();
+                    //ViewBag.message = "The user " + uc.username + " created successfully";
+                }
+                else
+                {
+                    ViewBag.message = savereg.Content.ReadAsStringAsync().Result;
                 }
             }
+            
             return View();
             
         }

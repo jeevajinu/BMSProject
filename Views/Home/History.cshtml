@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BMS.MaintanenceTable>
+
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>History</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.reqdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.request)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RejApproveDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegUser.username)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.reqdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.request)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RejApproveDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegUser.username)
+        </td>
+        <td>
+          
+        </td>
+    </tr>
+}
+
+</table>

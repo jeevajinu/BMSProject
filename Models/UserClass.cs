@@ -23,8 +23,9 @@ namespace BMS.Models
         [Required(ErrorMessage = "Please enter the name")]
         [Display(Name = "Name of the User")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Please enter the Email")]
-        [Display(Name = "Email")]
+        [Display(Name = "Email address")]
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string email { get; set; }
         [Display(Name="Admin")]
         public char Admin { get; set; }
@@ -48,6 +49,7 @@ namespace BMS.Models
        
         public string reqstatus { get; set; }
         public string fileupload { get; set; }
+        public string filename { get; set; }
 
     }
 }

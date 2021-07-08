@@ -21,19 +21,52 @@ namespace BMS.Controllers
             string x = System.Web.HttpContext.Current.Session["UserId"].ToString();
             x = x.Replace("\"", "");
             int idx = Convert.ToInt32(x);
+           
             BMSdbEntities entities = new BMSdbEntities();
-            List<MaintanenceTable> maintainreq = (from c in entities.MaintanenceTables
-                                                  where c.uid == idx
-                                                  select c).ToList();
-            if (maintainreq.Count == 0)
-            {
-                maintainreq.Add(new MaintanenceTable());
-            }
+            List<MaintanenceTable> maintainreq = entities.MaintanenceTables.Where(a => a.uid == idx).OrderBy(a => a.reqdate).ToList();
 
-            return View(maintainreq);
+            //List<MaintanenceTable> maintainreq = (from c in entities.MaintanenceTables
+            //                                      where c.uid == idx
+            //                                      select c).ToList() ;
+            if (maintainreq.Count > 0)
+            {
+                //maintainreq.Add(new MaintanenceTable());
+                return View(maintainreq);
+            }
+            else
+            {
+                return View();
+            }
+           
          
 
            
+        }
+        public ActionResult History()
+        {
+            string x = System.Web.HttpContext.Current.Session["UserId"].ToString();
+            x = x.Replace("\"", "");
+            int idx = Convert.ToInt32(x);
+
+            BMSdbEntities entities = new BMSdbEntities();
+            List<MaintanenceTable> maintainreq = entities.MaintanenceTables.Where(a => a.uid == idx).OrderBy(a => a.reqdate).ToList();
+
+            //List<MaintanenceTable> maintainreq = (from c in entities.MaintanenceTables
+            //                                      where c.uid == idx
+            //                                      select c).ToList() ;
+            if (maintainreq.Count > 0)
+            {
+                //maintainreq.Add(new MaintanenceTable());
+                return View(maintainreq);
+            }
+            else
+            {
+                return View();
+            }
+
+
+
+
         }
         public ActionResult ShowAdmin()
         {
@@ -48,6 +81,13 @@ namespace BMS.Controllers
 
 
 
+        }
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["UserId"] != null)
+                base.OnActionExecuting(filterContext);
+            else
+                filterContext.Result = new RedirectResult("~/Login/Index");
         }
     }
 }

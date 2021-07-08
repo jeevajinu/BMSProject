@@ -14,6 +14,7 @@ namespace BMS.Controllers
        
         public ActionResult Index()
         {
+            Session["UserId"] = null;
             return View();
 
         }

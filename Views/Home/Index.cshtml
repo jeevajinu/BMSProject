@@ -38,20 +38,28 @@
             var formData = new FormData();
             formData.append("fileName", $("#fileName").val());
             formData.append("file", $("#myfile")[0].files[0]);
-            $.ajax({
-                url: '/api/User/fileupload',
-                type: 'POST',
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (fileName) {
-                    insertvalues(fileName);
+            if ($("#myfile").val() !== "") {
 
-                  
-                },
-               
-            });
+
+                $.ajax({
+                    url: '/api/User/fileupload',
+                    type: 'POST',
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (fileName) {
+                        insertvalues(fileName);
+
+
+                    },
+
+                });
+            }
+            else
+            {
+                insertvalues(null);
+            }
             event.preventDefault();
         });
     });
@@ -66,11 +74,17 @@
          console.log("second");
         insert.uid =@Session["UserId"];
          insert.RejApproveDate = null;
-         const lastDot = filename.lastIndexOf('.');
+         var uri = "";
+         if (filename != null) {
 
-         const fname = filename.substring(0, lastDot);
-         const ext = filename.substring(lastDot + 1);
-         var uri = '/api/User/insertrequest/MaintanenceTable/' + fname +'/'+ ext;
+             const lastDot = filename.lastIndexOf('.');
+             const fname = filename.substring(0, lastDot);
+             const ext = filename.substring(lastDot + 1);
+             uri = '/api/User/insertrequest/MaintanenceTable/' + fname + '/' + ext;
+         }
+         else {
+             uri = '/api/User/insertrequest/MaintanenceTable/null/null';
+         }
         $.ajax({
             url: uri,
             type: 'POST',
@@ -80,6 +94,7 @@
             success: function (response) {
 
                 alert(response);
+                location.reload();
 
             },
 
